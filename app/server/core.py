@@ -17,6 +17,7 @@ class ApplicationCore(InitPluginProtocol):
         from app.controllers.web.base import BaseController
         from app.tools.xrequest import XRequest
         from app.database import models as m
+        from litestar.static_files import create_static_files_router
 
         settings = get_settings()
 
@@ -24,12 +25,17 @@ class ApplicationCore(InitPluginProtocol):
         app_config.request_class = XRequest
         app_config.template_config = config.template
         app_config.compression_config = config.compression
-        app_config.static_files_config.extend(config.static)
         app_config.plugins.extend(
             [plugins.alchemy, plugins.reload, plugins.htmx]
         )
-        app_config.route_handlers.extend([BaseController])
-
+        app_config.route_handlers.extend(
+            [
+                create_static_files_router(
+                    path="/static", directories=[settings.app.STATIC_DIR]
+                ),
+                BaseController,
+            ]
+        )
         app_config.signature_namespace.update({"m": m})
 
         return app_config

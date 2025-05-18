@@ -13,10 +13,6 @@ from .base import get_settings
 settings = get_settings()
 
 
-static = [
-    StaticFilesConfig(path="/static", directories=[settings.app.STATIC_DIR])
-]
-
 template = TemplateConfig(
     directory=settings.app.TEMPLATES_DIR, engine=JinjaTemplateEngine
 )
