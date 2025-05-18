@@ -9,10 +9,10 @@ if TYPE_CHECKING:
     from litestar.config.app import AppConfig
 
 
-class BuilderApp(InitPluginProtocol):
+class ApplicationCore(InitPluginProtocol):
     def on_app_init(self, app_config: AppConfig) -> AppConfig:
         from app.config import app as config
-        from app.config import plugins
+        from app.server import plugins
         from app.config.base import get_settings
         from app.controllers.base import BaseController
         from app.tools.xrequest import XRequest
@@ -29,5 +29,7 @@ class BuilderApp(InitPluginProtocol):
             [plugins.alchemy, plugins.reload, plugins.htmx]
         )
         app_config.route_handlers.extend([BaseController])
+        
+        app_config.signature_namespace.update({"m": m})
 
         return app_config
