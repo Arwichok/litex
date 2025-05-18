@@ -14,7 +14,7 @@ class ApplicationCore(InitPluginProtocol):
         from app.config import app as config
         from app.server import plugins
         from app.config.base import get_settings
-        from app.controllers.base import BaseController
+        from app.controllers.web.base import BaseController
         from app.tools.xrequest import XRequest
         from app.database import models as m
         
