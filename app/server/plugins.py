@@ -16,7 +16,5 @@ reload = BrowserReloadPlugin(
         settings.app.TEMPLATES_DIR,
         settings.app.STATIC_DIR,
     ),
-    watch_filter=DefaultFilter(
-        ignore_dirs=(".git", ".hg", ".svn", ".tox")
-    ),
+    watch_filter=DefaultFilter(ignore_dirs=(".git", ".hg", ".svn", ".tox")),
 )

@@ -9,8 +9,8 @@ PROJECT_DIR = Path(__file__).parent.parent.parent
 APP_DIR = PROJECT_DIR / "app"
 
 
-
 _env = Env()
+
 
 def env(type: Type | str, name: str, default: Any = ..., **kwargs):
     return field(
@@ -25,6 +25,7 @@ class AppSettings:
     DEBUG: bool = env(bool, "DEBUG", False)
     STATIC_DIR: Path = PROJECT_DIR / "static"
     TEMPLATES_DIR = APP_DIR / "templates"
+
 
 @dataclass
 class DatabaseSettings:

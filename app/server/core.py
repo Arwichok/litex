@@ -17,7 +17,7 @@ class ApplicationCore(InitPluginProtocol):
         from app.controllers.web.base import BaseController
         from app.tools.xrequest import XRequest
         from app.database import models as m
-        
+
         settings = get_settings()
 
         app_config.debug = settings.app.DEBUG
@@ -29,7 +29,7 @@ class ApplicationCore(InitPluginProtocol):
             [plugins.alchemy, plugins.reload, plugins.htmx]
         )
         app_config.route_handlers.extend([BaseController])
-        
+
         app_config.signature_namespace.update({"m": m})
 
         return app_config

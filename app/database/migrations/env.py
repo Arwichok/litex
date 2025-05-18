@@ -13,7 +13,11 @@ if TYPE_CHECKING:
 
     from advanced_alchemy.alembic.commands import AlembicCommandConfig
 
-__all__ = ("do_run_migrations", "run_migrations_offline", "run_migrations_online")
+__all__ = (
+    "do_run_migrations",
+    "run_migrations_offline",
+    "run_migrations_online",
+)
 
 
 # this is the Alembic Config object, which provides
